@@ -1,10 +1,14 @@
 'use client'
 
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
+
 import { useState, useEffect } from "react";
 
 export default function Home() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const router = useRouter();
     
     const handleLogin = async () => {
         try {
@@ -21,11 +25,12 @@ export default function Home() {
             console.log('Login successful:', data);
 
             // Converta o objeto 'data' em uma string JSON antes de armazená-lo no localStorage
-            localStorage.setItem('userID', JSON.stringify(data));
+            localStorage.setItem('userID', JSON.stringify(data.user_id));
 
-            console.log('data', data); // Não precisa da variável 'userData'
+            console.log(data.user_id); // Não precisa da variável 'userData'
 
             alert('Login efetuado!');
+            router.push("/userpage");
             // Faça o que você quiser com os dados de login, como redirecionar o usuário.
           } else {
             const errorData = await response.json();

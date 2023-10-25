@@ -1,41 +1,58 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
+
+
+interface Aluno {
+  aluno_id: number;
+  nome_aluno: string;
+  email_aluno: string;
+  telefone_aluno: string;
+  cpf_aluno: string;
+  nome_personal: string;
+}
 
 export default function UserPage() {
-    const [alunos, setAlunos] = useState([])
-    const alunosDoPersonal = async () => {
-        try {
-          const response = await fetch('http://localhost:3030/alunos');
-          if (response.ok) {
-            const data = await response.json();
-            setAlunos(data); // Define os dados dos alunos no estado.
-          } else {
-            // Lidar com erros de resposta, se necessário.
-            console.error('Erro ao buscar alunos:', response.status, response.statusText);
-          }
-        } catch (error) {
-          // Lidar com erros de rede ou exceções, se necessário.
-          console.error('Erro durante a busca de alunos:', error);
-        }
-      }
-    
-      useEffect(() => {
-        // Quando o componente é montado, chame a função para buscar os alunos.
-        alunosDoPersonal();
-      }, []); // O array vazio [] garante que isso seja executado apenas uma vez, semelhante a componentDidMount.
+  const [alunos, setAlunos] = useState<Aluno[]>([]);
+  const [loading, setLoading] = useState(true);
 
-      return (
-        <div>
-      <h1>Lista de Alunos</h1>
-      <ul>
-        {alunos.map((aluno) => (
-          <li key={aluno.aluno_id}>
-            {aluno.nome}
-            
-            </li>
-        ))}
-      </ul>
+  // Recupere o userID do localStorage
+  const storedUserID = localStorage.getItem('userID');
+  const userID = storedUserID ? JSON.parse(storedUserID) : null;
+  
+
+  useEffect(() => {
+    if (userID) {
+      // Faça uma solicitação para buscar os alunos associados a esse personal usando o 'userID'
+      fetch(`http://localhost:3030/alunos/personal/${userID}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setAlunos(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar alunos:', error);
+          setLoading(false);
+        });
+    }
+  }, [userID]);
+
+  return (
+    <div>
+      {loading ? (
+        <p>Carregando...</p>
+      ) : (
+        <ul>
+          {alunos.map((aluno) => (
+            <li key={aluno.aluno_id}>
+              {aluno.nome_aluno}
+              {aluno.email_aluno}
+              {aluno.telefone_aluno}
+              {aluno.nome_personal}
+              </li>
+          ))}
+        </ul>
+      )}
     </div>
-     )
+  );
 }
