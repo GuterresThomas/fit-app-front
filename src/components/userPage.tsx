@@ -1,7 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import {useRouter} from 'next/navigation'
+import {useRouter} from 'next/navigation';
+import NavBar from '@/components/navbar';
+import PersonalInfos from '@/components/personalinfos'
+
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 
 interface Aluno {
@@ -43,16 +48,19 @@ export default function UserPage() {
       router.push("/");
       alert('não autorizado')
     }
-  }, [userID]);
+  }, [userID, router]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex">
       <div className=" flex flex-col justify-center">
-        <div className="">
-          Bem vindo {userNome}
+        <div className="text-2xl uppercase ml-0 font-semibold">
+          Bem vindo {userNome}!
         </div>
         <div>
-          <h1>Seus alunos:</h1>
+          <PersonalInfos/>
+        </div>
+        <div>
+          <h1 className="">Seus alunos:</h1>
         </div>
         {loading ? (
           <p>Carregando...</p>
