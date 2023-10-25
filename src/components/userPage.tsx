@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import {useRouter} from 'next/navigation'
 
 
 interface Aluno {
@@ -23,6 +24,7 @@ export default function UserPage() {
   const storedUserNome = localStorage.getItem('userNome');
   const userNome = storedUserNome ? JSON.parse(storedUserNome) : null;
   
+  const router = useRouter();
 
   useEffect(() => {
     if (userID) {
@@ -37,6 +39,9 @@ export default function UserPage() {
           console.error('Erro ao buscar alunos:', error);
           setLoading(false);
         });
+    } else {
+      router.push("/");
+      alert('não autorizado')
     }
   }, [userID]);
 
@@ -52,7 +57,7 @@ export default function UserPage() {
         {loading ? (
           <p>Carregando...</p>
         ) : (
-          <ul className="m-2">
+          <ul className="m-2 p-2">
             {alunos.map((aluno) => (
               <li key={aluno.aluno_id} className="m-2 p-2">
                 <div className=""><p>Nome do aluno: {aluno.nome_aluno}</p></div>
