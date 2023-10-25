@@ -43,7 +43,7 @@ export default function UserPage() {
   return (
     <div className="flex justify-center">
       <div className=" flex flex-col justify-center">
-        <div>
+        <div className="">
           Bem vindo {userNome}
         </div>
         <div>
