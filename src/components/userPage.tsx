@@ -19,6 +19,9 @@ export default function UserPage() {
   // Recupere o userID do localStorage
   const storedUserID = localStorage.getItem('userID');
   const userID = storedUserID ? JSON.parse(storedUserID) : null;
+
+  const storedUserNome = localStorage.getItem('userNome');
+  const userNome = storedUserNome ? JSON.parse(storedUserNome) : null;
   
 
   useEffect(() => {
@@ -39,6 +42,9 @@ export default function UserPage() {
 
   return (
     <div>
+      <div>
+        Bem vindo {userNome}
+      </div>
       {loading ? (
         <p>Carregando...</p>
       ) : (

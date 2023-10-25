@@ -27,7 +27,11 @@ export default function Home() {
             // Converta o objeto 'data' em uma string JSON antes de armazená-lo no localStorage
             localStorage.setItem('userID', JSON.stringify(data.user_id));
 
-            console.log(data.user_id); // Não precisa da variável 'userData'
+            localStorage.setItem('userNome', JSON.stringify(data.nome));
+
+            console.log(data.user_id);
+            
+            console.log(data.nome);
 
             alert('Login efetuado!');
             router.push("/userpage");
