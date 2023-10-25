@@ -41,24 +41,29 @@ export default function UserPage() {
   }, [userID]);
 
   return (
-    <div>
-      <div>
-        Bem vindo {userNome}
+    <div className="flex justify-center">
+      <div className=" flex flex-col justify-center">
+        <div>
+          Bem vindo {userNome}
+        </div>
+        <div>
+          <h1>Seus alunos:</h1>
+        </div>
+        {loading ? (
+          <p>Carregando...</p>
+        ) : (
+          <ul className="m-2">
+            {alunos.map((aluno) => (
+              <li key={aluno.aluno_id} className="m-2 p-2">
+                <div className=""><p>Nome do aluno: {aluno.nome_aluno}</p></div>
+                <div className=""><p>Email do aluno: {aluno.email_aluno}</p></div>
+                <div className=""><p>Telefone do aluno: {aluno.telefone_aluno}</p></div>
+                <div className=""><p>Personal responsável: {aluno.nome_personal}</p></div>
+                </li>
+            ))}
+          </ul>
+        )}
       </div>
-      {loading ? (
-        <p>Carregando...</p>
-      ) : (
-        <ul>
-          {alunos.map((aluno) => (
-            <li key={aluno.aluno_id}>
-              {aluno.nome_aluno}
-              {aluno.email_aluno}
-              {aluno.telefone_aluno}
-              {aluno.nome_personal}
-              </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }
