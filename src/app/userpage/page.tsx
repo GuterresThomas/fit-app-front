@@ -1,13 +1,12 @@
-import UserPage from "../../components/userPage"
+import PersonalInfos from "@/components/personalinfos"
 import NavBar from "../../components/navbar"
-import PersonalInfos from "../../components/personalinfos"
 
 
 export default function UserPageHome() {
     return (
         <div>
             <NavBar/>
-            <UserPage />
+            <PersonalInfos/>
         </div>
     )
 }

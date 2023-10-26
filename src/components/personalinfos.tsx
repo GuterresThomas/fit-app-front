@@ -1,6 +1,18 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
+import AddAlunoForm from './addAluno';
+
+interface Aluno {
+
+    aluno_id: number,
+    personal_id: number, // Referência ao personal
+    nome: string,
+    email: string,
+    telefone: string,
+    cpf: string,
+
+}
 
 function PersonalInfos() {
     const [alunos, setAlunos] = useState<Aluno[]>([]);
@@ -42,6 +54,9 @@ function PersonalInfos() {
       <p className="">Nome: {userNome}</p>
       <p className="">Número de Alunos: {numeroDeAlunos}</p>
       {/* Adicione mais informações relevantes aqui */}
+      <div>
+        <AddAlunoForm/>
+      </div>
     </div>
   );
 }
