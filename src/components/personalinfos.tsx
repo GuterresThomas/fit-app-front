@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import AddAlunoForm from './addAluno';
+import AlunosTreinos from './alunosTreinos';
 
 interface Aluno {
 
@@ -56,6 +57,9 @@ function PersonalInfos() {
       {/* Adicione mais informações relevantes aqui */}
       <div>
         <AddAlunoForm/>
+      </div>
+      <div>
+        <AlunosTreinos/>
       </div>
     </div>
   );
