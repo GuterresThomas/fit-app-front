@@ -38,6 +38,29 @@ function AlunosTreinos() {
     fetchData();
   }, [personalId]);
 
+  const handleDeleteAluno = async (alunoId: number) => {
+    const confirmDelete = window.confirm("Tem certeza de que deseja excluir este aluno?");
+
+    if (confirmDelete) {
+      try {
+        const response = await fetch(`http://localhost:3030/aluno_delete/${alunoId}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          // Atualize a lista de alunos após a exclusão
+          const updatedAlunos = alunosTreinos.filter((aluno) => aluno.aluno_id !== alunoId);
+          alert('Aluno Excluido com sucesso!')
+          setAlunosTreinos(updatedAlunos);
+        } else {
+          console.error("Erro ao excluir aluno");
+        }
+      } catch (error) {
+        console.error("Erro na solicitação de exclusão:", error);
+      }
+    }
+  };
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -53,6 +76,8 @@ function AlunosTreinos() {
             <div>Telefone do Aluno: {alunoTreino.telefone_aluno}</div>
             <div>Data do Treino: {alunoTreino.data_do_treino}</div>
             <div>Descrição do Treino: {alunoTreino.descricao_do_treino}</div>
+            <button onClick={() => handleDeleteAluno(alunoTreino.aluno_id)}>Excluir Aluno</button>
+           
             {/* Adicione mais informações conforme necessário */}
           </li>
         ))}
