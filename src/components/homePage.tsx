@@ -55,10 +55,10 @@ export default function Home() {
         <div className="md:h-screen md:overflow-hidden md:w-[900px] md:mr-0">
           <img className=" w-min" src="/banner.jpeg"/>
         </div>
-        <div className="md:flex md:justify-center h-96 md:w-[430px] md:h-screen bg-orange-400 ">
+        <div className="md:flex md:justify-center h-screen md:w-[430px] md:h-screen bg-orange-400 ">
             
             <div className="flex flex-col justify-center p-2">
-                <h1 className="text-3xl w-40 font-bold text-zinc-100 p-5 m-2">FIT APP</h1>
+                <h1 className="text-3xl w-40 font-bold text-zinc-100 p-5 m-2 mt-20">FIT <span className="text-black">APP</span></h1>
                 <input
                 className="m-2 bg-slate-100 rounded-xl p-1 hover:bg-slate-200"    
                 type="email"
