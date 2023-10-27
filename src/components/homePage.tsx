@@ -51,11 +51,16 @@ export default function Home() {
 
     
     return (
-      <div className="justify-center flex">
-        <div className="flex justify-center mt-20 h-80 bg-orange-400 rounded-2xl ">
-            <div className="flex flex-col align-middle justify-center p-2">
+      <div className="md:justify-center h-screen md:flex">
+        <div className="md:h-screen md:overflow-hidden md:w-[900px] md:mr-0">
+          <img className=" w-min" src="/banner.jpeg"/>
+        </div>
+        <div className="md:flex md:justify-center h-96 md:w-[430px] md:h-screen bg-orange-400 ">
+            
+            <div className="flex flex-col justify-center p-2">
+                <h1 className="text-3xl w-40 font-bold text-zinc-100 p-5 m-2">FIT APP</h1>
                 <input
-                className="m-2 bg-slate-100 rounded-md p-1 hover:bg-slate-200"    
+                className="m-2 bg-slate-100 rounded-xl p-1 hover:bg-slate-200"    
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -63,14 +68,15 @@ export default function Home() {
                 required
                 />
                 <input
-                className="m-2 bg-slate-100 rounded-md p-1 hover:bg-slate-200"
+                className="m-2 bg-slate-100 rounded-xl p-1 hover:bg-slate-200"
                 type="password"
                 placeholder="Senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 required
                 />
-                <button className=" bg-slate-100 rounded-md m-2 p-1 hover:bg-slate-200 font-bold uppercase "onClick={handleLogin}>Login</button>
+                <button className=" bg-slate-100 rounded-xl m-2 p-1 hover:bg-slate-200 font-bold uppercase "onClick={handleLogin}>Login</button>
+                <p></p>
             </div>
         </div>
       </div>
