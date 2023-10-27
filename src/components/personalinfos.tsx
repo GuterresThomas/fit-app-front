@@ -66,7 +66,7 @@ function PersonalInfos() {
           <CardHeader>
             <CardTitle>
               <div>
-                <h1 className="font-bold text-2xl">Bem vindo {userNome}</h1>
+                <h1 className="font-bold text-2xl">Bem vindo, {userNome}</h1>
               </div>
           </CardTitle>
             <CardDescription>
