@@ -4,6 +4,16 @@ import {useRouter} from 'next/navigation';
 import AddAlunoForm from './addAluno';
 import AlunosTreinos from './alunosTreinos';
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+
 interface Aluno {
 
     aluno_id: number,
@@ -51,12 +61,23 @@ function PersonalInfos() {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold ">Suas Informações</h2>
-      <p className="">Nome: {userNome}</p>
-      <p className="">Número de Alunos: {numeroDeAlunos}</p>
-      {/* Adicione mais informações relevantes aqui */}
       <div>
-        <AddAlunoForm/>
+        <Card className=" m-2">
+          <CardHeader>
+            <CardTitle>
+              <div>
+                <h1 className="font-bold text-2xl">Bem vindo {userNome}</h1>
+              </div>
+          </CardTitle>
+            <CardDescription>
+              <h2 className="text-xl font-semibold ">Suas Informações</h2>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="">Nome: {userNome}</p>
+            <p className="">Número de Alunos: {numeroDeAlunos}</p>
+          </CardContent>
+        </Card>
       </div>
       <div>
         <AlunosTreinos/>

@@ -1,6 +1,23 @@
 'use client'
 
 import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+
 
 interface AlunoTreino {
   aluno_id: number;
@@ -67,22 +84,38 @@ function AlunosTreinos() {
 
   return (
     <div>
-      <h1>Alunos e Treinos:</h1>
-      <ul>
-        {alunosTreinos.map((alunoTreino) => (
-          <li key={alunoTreino.aluno_id}>
-            <div>Nome do Aluno: {alunoTreino.nome_aluno}</div>
-            <div>Email do Aluno: {alunoTreino.email_aluno}</div>
-            <div>Telefone do Aluno: {alunoTreino.telefone_aluno}</div>
-            <div>Data do Treino: {alunoTreino.data_do_treino}</div>
-            <div>Descrição do Treino: {alunoTreino.descricao_do_treino}</div>
-            <button onClick={() => handleDeleteAluno(alunoTreino.aluno_id)}>Excluir Aluno</button>
-           
-            {/* Adicione mais informações conforme necessário */}
-          </li>
-        ))}
-      </ul>
-    </div>
+      <Card className="m-2">
+      <CardHeader>
+        <CardTitle><h1>Informações sobre seus Alunos:</h1></CardTitle>
+        <CardDescription>
+
+        </CardDescription>
+      </CardHeader>
+        <CardContent>
+          <div>
+            <ul>
+            {alunosTreinos.map((alunoTreino) => (
+              <li className="border-zinc-300 p-1 m-1 border" key={alunoTreino.aluno_id}>
+                <div>Nome do Aluno: {alunoTreino.nome_aluno}</div>
+                <div>Email do Aluno: {alunoTreino.email_aluno}</div>
+                <div>Telefone do Aluno: {alunoTreino.telefone_aluno}</div>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Treinos</AccordionTrigger>
+                    <AccordionContent>
+                      <div>Data do Treino: {alunoTreino.data_do_treino}</div>
+                      <div>Descrição do Treino: {alunoTreino.descricao_do_treino}</div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                <button className="bg-orange-400 p-2 rounded-xl font-medium text-white hover:bg-orange-600 m-2" onClick={() => handleDeleteAluno(alunoTreino.aluno_id)} >Excluir Aluno</button>
+                    </li>
+                  ))}
+              </ul>
+          </div>
+      </CardContent>
+    </Card>
+  </div>
   );
 }
 

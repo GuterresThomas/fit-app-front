@@ -2,6 +2,16 @@
 
 import { useState, useEffect } from "react";
 
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+  
+
 export default function AddAlunoForm() {
 
     const randomAlunoId = Math.floor(Math.random() * 10000); // Gere um número aleatório entre 0 e 999 (ajuste o limite conforme necessário)
@@ -56,62 +66,79 @@ export default function AddAlunoForm() {
 
     return (
         <div>
-            <h2>Adicionar Aluno</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="nome">Nome:</label>
-                    <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        value={newAluno.nome}
-                        onChange={(e) =>
-                            setNewAluno({ ...newAluno, nome: e.target.value })
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        value={newAluno.email}
-                        onChange={(e) =>
-                            setNewAluno({ ...newAluno, email: e.target.value })
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="telefone">Telefone:</label>
-                    <input
-                        type="text"
-                        id="telefone"
-                        name="telefone"
-                        value={newAluno.telefone}
-                        onChange={(e) =>
-                            setNewAluno({ ...newAluno, telefone: e.target.value })
-                        }
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cpf">CPF:</label>
-                    <input
-                        type="text"
-                        id="cpf"
-                        name="cpf"
-                        value={newAluno.cpf}
-                        onChange={(e) =>
-                            setNewAluno({ ...newAluno, cpf: e.target.value })
-                        }
-                        required
-                    />
-                </div>
-                <button type="submit">Adicionar Aluno</button>
-            </form>
-        </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Adicionar Aluno</CardTitle>
+          <CardDescription>Adicione as informações sobre o aluno abaixo:</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            <div className="flex flex-col">
+              <label className="m-2 " htmlFor="nome">
+                Nome:
+              </label>
+              <input
+                className="bg-zinc-100 m-2 rounded-xl p-1"
+                placeholder="nome"
+                type="text"
+                id="nome"
+                name="nome"
+                value={newAluno.nome}
+                onChange={(e) => setNewAluno({ ...newAluno, nome: e.target.value })}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="m-2 " htmlFor="email">
+                Email:
+              </label>
+              <input
+                className="bg-zinc-100 m-2 rounded-xl p-1"
+                placeholder="email"
+                type="text"
+                id="email"
+                name="email"
+                value={newAluno.email}
+                onChange={(e) => setNewAluno({ ...newAluno, email: e.target.value })}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="m-2 " htmlFor="telefone">
+                Telefone:
+              </label>
+              <input
+                className="bg-zinc-100 m-2 rounded-xl p-1"
+                placeholder="telefone"
+                type="text"
+                id="telefone"
+                name="telefone"
+                value={newAluno.telefone}
+                onChange={(e) => setNewAluno({ ...newAluno, telefone: e.target.value })}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="m-2 " htmlFor="cpf">
+                CPF:
+              </label>
+              <input
+                className="bg-zinc-100 m-2 rounded-xl p-1"
+                placeholder="cpf"
+                type="text"
+                id="cpf"
+                name="cpf"
+                value={newAluno.cpf}
+                onChange={(e) => setNewAluno({ ...newAluno, cpf: e.target.value })}
+                required
+              />
+            </div>
+            <button className="bg-orange-400 p-2 rounded-xl font-medium text-white hover:bg-orange-600 m-2" type="submit">
+              Adicionar Aluno
+            </button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
     );
 }

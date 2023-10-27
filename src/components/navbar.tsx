@@ -8,8 +8,8 @@ export default function Navbar() {
   const [state, setState] = React.useState(false)
 
   const menus = [
-    { title: "Página inicial", path: "/" },
-    { title: "Alunos", path: "/alunos" },
+    { title: "Página inicial", path: "/userpage" },
+    { title: "Alunos", path: "/addaluno" },
     { title: "Sair", path: "/alunos" },
   ]
 
@@ -17,7 +17,7 @@ export default function Navbar() {
     <nav className="bg-orange-400 mb-2 w-full border-b md:border-0 shadow-slate-400 shadow-sm">
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
-          <Link href="/">
+          <Link href="/userpage">
             <h1 className="text-3xl font-bold text-zinc-100">Fit App</h1>
           </Link>
           <div className="md:hidden">
@@ -39,6 +39,7 @@ export default function Navbar() {
               <li key={idx} className="text-zinc-100 hover:text-zinc-100">
                 <Link href={item.path}>{item.title}</Link>
               </li>
+              
             ))}
           </ul>
         </div>
