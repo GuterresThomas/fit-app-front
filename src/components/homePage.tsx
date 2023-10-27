@@ -1,9 +1,21 @@
 'use client'
 
+
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 
+import Register from "@/components/register"
 import { useState, useEffect } from "react";
+
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
     const [email, setEmail] = useState('');
@@ -39,6 +51,7 @@ export default function Home() {
           } else {
             const errorData = await response.json();
             console.error('Login failed:', errorData);
+            alert( JSON.stringify(errorData));
             
             // Lida com erros de login aqui.
           }
@@ -52,7 +65,7 @@ export default function Home() {
     
     return (
       <div className="md:justify-center h-screen md:flex">
-        <div className="md:h-screen md:overflow-hidden md:w-[900px] md:mr-0">
+        <div className="md:h-screen md:overflow-hidden md:w-screen md:mr-0">
           <img className=" w-min" src="/banner.jpeg"/>
         </div>
         <div className="md:flex md:justify-center h-screen md:w-[430px] md:h-screen bg-orange-400 ">
@@ -77,6 +90,18 @@ export default function Home() {
                 />
                 <button className=" bg-slate-100 rounded-xl m-2 p-1 hover:bg-slate-200 font-bold uppercase "onClick={handleLogin}>Login</button>
                 <p></p>
+                <div>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="text-sm">Não tem cadastro ainda? Cadastre-se agora!</AccordionTrigger>
+                    <AccordionContent>
+                      <ScrollArea className="md:h-[180px] md:w-[350px] rounded-md border p-4">  
+                        <Register/>
+                      </ScrollArea>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>      
+              </div>
             </div>
         </div>
       </div>

@@ -119,12 +119,12 @@ function AlunosTreinos() {
     }
   };
 
-  const formatFriendlyDate = (dateString) => {
+  const formatFriendlyDate = (dateString: string | number | Date) => {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const loadFrequencia = async (alunoId) => {
+  const loadFrequencia = async (alunoId: number) => {
     const data_inicio = "2023-10-01"; // Defina a data de início desejada
     const data_fim = "2023-10-31"; // Defina a data de fim desejada
 
