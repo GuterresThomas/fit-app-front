@@ -120,9 +120,10 @@ function AlunosTreinos() {
   };
 
   const formatFriendlyDate = (dateString: string | number | Date) => {
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "2-digit", day: "2-digit" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+  
 
   const loadFrequencia = async (alunoId: number) => {
     const data_inicio = "2023-10-01"; // Defina a data de início desejada
@@ -295,7 +296,6 @@ const formattedDateStr = `${year}-${month}-${day}`;
                           />
                           <textarea
                             className="bg-zinc-100 m-2 rounded-xl p-1"
-                            type="text"
                             placeholder="Descrição do Treino"
                             value={newTreino.descricao_do_treino}
                             onChange={(e) =>
