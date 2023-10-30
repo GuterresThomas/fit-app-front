@@ -41,7 +41,7 @@ function PersonalInfos() {
     useEffect(() => {
       if (userID) {
         // Faça uma solicitação para buscar os alunos associados a esse personal usando o 'userID'
-        fetch(`http://localhost:3030/alunos/personal/${userID}`)
+        fetch(`https://fit-app-node.vercel.app/alunos/personal/${userID}`)
           .then((response) => response.json())
           .then((data) => {
             setAlunos(data);
@@ -66,7 +66,7 @@ function PersonalInfos() {
           <CardHeader>
             <CardTitle>
               <div>
-                <h1 className="font-bold text-2xl">Bem vindo {userNome}</h1>
+                <h1 className="font-bold text-2xl">Bem vindo, {userNome}</h1>
               </div>
           </CardTitle>
             <CardDescription>
