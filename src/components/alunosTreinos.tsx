@@ -37,8 +37,8 @@ interface AlunoTreino {
   nome_aluno: string;
   email_aluno: string;
   telefone_aluno: string;
-  treinos: Treino[]; // Treinos agora é uma lista aqui
-  // Adicione outras propriedades conforme necessário
+  treinos: Treino[]; 
+  observacoes_objetivos: string;
   frequencia: Frequencia[];
 }
 
@@ -242,6 +242,7 @@ const formattedDateStr = `${year}-${month}-${day}`;
                   <div>Nome do Aluno: {alunoTreino.nome_aluno}</div>
                   <div>Email do Aluno: {alunoTreino.email_aluno}</div>
                   <div>Telefone do Aluno: {alunoTreino.telefone_aluno}</div>
+                  <div>Descrição e objetivos: {alunoTreino.observacoes_objetivos}</div>
                   <Accordion type="single" collapsible>
                     <AccordionItem value={`item-${alunoTreino.aluno_id}`}>
                       <AccordionTrigger>Treinos</AccordionTrigger>

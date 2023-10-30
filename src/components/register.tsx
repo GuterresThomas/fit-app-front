@@ -53,7 +53,7 @@ const Register = () => {
   }, [])
 
   return (
-    <div className="flex flex-col justify-center p-2">
+    <div className="flex flex-col justify-center bg-orange-400 p-2">
       <input
         className="m-2 bg-slate-100 rounded-xl p-1 hover:bg-slate-200"
         type="text"

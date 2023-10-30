@@ -23,7 +23,8 @@ export default function AddAlunoForm() {
         email: "",
         telefone: "",
         cpf: "",
-        personal_id: 1, // Substitua 1 pelo ID do personal trainer desejado (será atualizado dinamicamente)
+        observacoes_objetivos: "", 
+        personal_id: 1,
     });
 
     useEffect(() => {
@@ -53,6 +54,7 @@ export default function AddAlunoForm() {
                 email: "",
                 telefone: "",
                 cpf: "",
+                observacoes_objetivos: "", 
                 personal_id: newAluno.personal_id, // Use o `personal_id` atualizado do estado
             });
             alert("Aluno adicionado com sucesso");
@@ -130,6 +132,21 @@ export default function AddAlunoForm() {
                 name="cpf"
                 value={newAluno.cpf}
                 onChange={(e) => setNewAluno({ ...newAluno, cpf: e.target.value })}
+                required
+              />
+            </div>
+
+            <div>
+            <label className="m-2" htmlFor="observacoes_objetivos">
+                Observações e Objetivos:
+              </label>
+              <textarea
+                className="bg-zinc-100 m-2 rounded-xl w-full p-1"
+                placeholder="Observações e Objetivos"
+                id="observacoes_objetivos"
+                name="observacoes_objetivos"
+                value={newAluno.observacoes_objetivos}
+                onChange={(e) => setNewAluno({ ...newAluno, observacoes_objetivos: e.target.value })}
                 required
               />
             </div>
