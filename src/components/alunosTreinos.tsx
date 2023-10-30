@@ -49,7 +49,14 @@ interface Treino {
 }
 
 function AlunosTreinos() {
-  const personalId = localStorage.getItem("userID"); // Obter o personalId do localStorage
+
+  
+  let personalId: unknown = null;
+
+  // Check if localStorage is available (on the client side)
+  if (typeof localStorage !== "undefined") {
+    personalId = localStorage.getItem("userID");
+  } // Obter o personalId do localStorage
 
   const [alunosTreinos, setAlunosTreinos] = useState<AlunoTreino[]>([]);
   const [loading, setLoading] = useState(true);

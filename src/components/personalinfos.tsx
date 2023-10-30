@@ -11,53 +11,53 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-
+} from "@/components/ui/card";
 
 interface Aluno {
-
-    aluno_id: number,
-    personal_id: number, // Referência ao personal
-    nome: string,
-    email: string,
-    telefone: string,
-    cpf: string,
-
+  aluno_id: number,
+  personal_id: number,
+  nome: string,
+  email: string,
+  telefone: string,
+  cpf: string,
 }
 
 function PersonalInfos() {
-    const [alunos, setAlunos] = useState<Aluno[]>([]);
-    const [loading, setLoading] = useState(true);
-  
-    // Recupere o userID do localStorage
+  const [alunos, setAlunos] = useState<Aluno[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [userNome, setUserNome] = useState(""); // Initialize with an empty string
+  const router = useRouter();
+
+  useEffect(() => {
     const storedUserID = localStorage.getItem('userID');
     const userID = storedUserID ? JSON.parse(storedUserID) : null;
-  
-    const storedUserNome = localStorage.getItem('userNome');
-    const userNome = storedUserNome ? JSON.parse(storedUserNome) : null;
-    
-    const router = useRouter();
-  
-    useEffect(() => {
-      if (userID) {
-        // Faça uma solicitação para buscar os alunos associados a esse personal usando o 'userID'
-        fetch(`https://fit-app-node.vercel.app/alunos/personal/${userID}`)
-          .then((response) => response.json())
-          .then((data) => {
-            setAlunos(data);
-            setLoading(false);
-          })
-          .catch((error) => {
-            console.error('Erro ao buscar alunos:', error);
-            setLoading(false);
-          });
-      } else {
-        router.push("/");
-        alert('não autorizado')
-      }
-    }, [userID, router]);
 
-    const numeroDeAlunos = alunos.length;
+    if (!userID) {
+      router.push("/");
+      alert('Não autorizado');
+      return;
+    }
+
+    // Fetch data on the client side after ensuring userID is defined
+    fetch(`https://fit-app-node.vercel.app/alunos/personal/${userID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAlunos(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar alunos:', error);
+        setLoading(false);
+      });
+
+    // Retrieve userNome from localStorage on the client side
+    const storedUserNome = localStorage.getItem('userNome');
+    if (storedUserNome) {
+      setUserNome(JSON.parse(storedUserNome));
+    }
+  }, [router]);
+
+  const numeroDeAlunos = alunos.length;
 
   return (
     <div className="p-4">
@@ -68,9 +68,9 @@ function PersonalInfos() {
               <div>
                 <h1 className="font-bold text-2xl">Bem vindo, {userNome}</h1>
               </div>
-          </CardTitle>
+            </CardTitle>
             <CardDescription>
-              <h2 className="text-xl font-semibold ">Suas Informações</h2>
+              <h2 className="text-xl font-semibold">Suas Informações</h2>
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -80,11 +80,10 @@ function PersonalInfos() {
         </Card>
       </div>
       <div>
-        <AlunosTreinos/>
+        <AlunosTreinos />
       </div>
     </div>
   );
 }
-
 
 export default PersonalInfos;
