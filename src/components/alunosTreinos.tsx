@@ -64,7 +64,7 @@ function AlunosTreinos() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3030/alunos/personal/${personalId}`);
+        const response = await fetch(`https://fit-app-node.vercel.app/alunos/personal/${personalId}`);
         if (response.ok) {
           const data = await response.json();
           setAlunosTreinos(data);
@@ -83,7 +83,7 @@ function AlunosTreinos() {
 
   const handleSaveFrequencia = async (alunoId: number) => {
     try {
-      const response = await fetch(`http://localhost:3030/registrar_frequencia`, {
+      const response = await fetch(`https://fit-app-node.vercel.app/registrar_frequencia`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,7 +129,7 @@ function AlunosTreinos() {
     const data_fim = "2023-10-31"; // Defina a data de fim desejada
 
     try {
-      const response = await fetch(`http://localhost:3030/consultar_frequencia/${alunoId}?data_inicio=${data_inicio}&data_fim=${data_fim}`);
+      const response = await fetch(`https://fit-app-node.vercel.app/consultar_frequencia/${alunoId}?data_inicio=${data_inicio}&data_fim=${data_fim}`);
       if (response.ok) {
         const data = await response.json();
         const updatedAlunos = alunosTreinos.map((aluno) => {
@@ -153,7 +153,7 @@ function AlunosTreinos() {
 
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:3030/aluno_delete/${alunoId}`, {
+        const response = await fetch(`https://fit-app-node.vercel.app/aluno_delete/${alunoId}`, {
           method: "DELETE",
         });
 
@@ -181,7 +181,7 @@ const formattedDateStr = `${year}-${month}-${day}`;
 
   const handleSaveTreino = async (alunoId: number) => {
     try {
-      const response = await fetch(`http://localhost:3030/treino_create`, {
+      const response = await fetch(`https://fit-app-node.vercel.app/treino_create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

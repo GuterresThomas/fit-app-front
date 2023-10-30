@@ -38,7 +38,7 @@ export default function AddAlunoForm() {
 
     const addAluno = async () => {
 
-        const response = await fetch("http://localhost:3030/aluno_create", {
+        const response = await fetch("https://fit-app-node.vercel.app/aluno_create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
