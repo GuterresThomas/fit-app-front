@@ -133,8 +133,8 @@ function AlunosTreinos() {
   
 
   const loadFrequencia = async (alunoId: number) => {
-    const data_inicio = "2023-10-01"; // Defina a data de início desejada
-    const data_fim = "2023-10-31"; // Defina a data de fim desejada
+    const data_inicio = "2023-11-01"; // Defina a data de início desejada
+    const data_fim = "2023-11-30"; // Defina a data de fim desejada
 
     try {
       const response = await fetch(`https://fit-app-node.vercel.app/consultar_frequencia/${alunoId}?data_inicio=${data_inicio}&data_fim=${data_fim}`);
